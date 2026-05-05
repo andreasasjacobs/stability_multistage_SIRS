@@ -3,22 +3,22 @@ This repository contains the MATLAB and Mathematica codes corresponding to the m
 
 ---
 
-## 📂 Files Included
+# 📂 Files Included
 
-### 1. `General_Multistage_SIRS.mlx`
+## 1. `General_Multistage_SIRS.mlx`
 - Computes the positive coefficients for the candidate Lyapunov functions.
 
-### 2. `MULTISTAGE_SIRS_SIMPLIFY.nb`
+## 2. `MULTISTAGE_SIRS_SIMPLIFY.nb`
 - Mathematica script used to simplify the expressions obtained from MATLAB, particularly for the case n ≥ 3.
 
-### 3. `Simulation_Multistage_n_2.mlx`
+## 3. `Simulation_Multistage_n_2.mlx`
 - Generates simulation results for the two-stage SIRS model.
 
-### 4. `Simulation_Multistage_n_3.mlx`
+## 4. `Simulation_Multistage_n_3.mlx`
 - Generates simulation results for the three-stage SIRS model.
 
 ---
 
-## ✏️ Notes
+# ✏️ Notes
 - MATLAB Live Scripts (`.mlx`) are used for analytical computations and simulations.
 - The Mathematica notebook is used for symbolic simplification.
