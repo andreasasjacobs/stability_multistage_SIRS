@@ -3,7 +3,7 @@ This repository contains the MATLAB and Mathematica codes corresponding to the m
 
 ---
 
-# 📂 Files Included
+#  Files Included
 
 ## 1. `General_Multistage_SIRS.mlx`
 - Computes the positive coefficients for the candidate Lyapunov functions.
@@ -19,6 +19,6 @@ This repository contains the MATLAB and Mathematica codes corresponding to the m
 
 ---
 
-# ✏️ Notes
+# Notes
 - MATLAB Live Scripts (`.mlx`) are used for analytical computations and simulations.
 - The Mathematica notebook is used for symbolic simplification.
