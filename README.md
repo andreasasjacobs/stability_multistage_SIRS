@@ -16,12 +16,14 @@ This repository contains the MATLAB and Mathematica codes corresponding to the m
 - OUTPUT: Simplified expresseion for the positive coefficients also conditions to make them positive.
 
 ## 3. `Simulation_Multistage_n_2.m`
-- Generates simulation results for the two-stage SIRS model.
-- OUTPUT: Simulation results for the two-stage SIRS model. 
+- Generates simulation results for the two-stage SIRS model. 
+- INPUT: System parameters. Note that the parameter set used in this simulation satisfies the condition on $\alpha$ given in the manuscript.
+- OUTPUT: Simulation results for the two-stage SIRS model, including graphs for the DFE and EE, parameter analysis, and an initial condition study.
 
 ## 4. `Simulation_Multistage_n_3.m`
-- Generates simulation results for the three-stage SIRS model.
-- OUTPUT: Simulation results for the three-stage SIRS model. 
+- Generates simulation results for the three-stage SIRS model. This program also checks whether Condition A in the manuscript is satisfied for the chosen parameter set.
+- INPUT: System parameters. Note that the parameter set used in this simulation satisfies Condition A given in the manuscript.
+- OUTPUT: Simulation results for the two-stage SIRS model, including graphs for the DFE and EE, parameter analysis, and an initial condition study.
 
 ---
 
