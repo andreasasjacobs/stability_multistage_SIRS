@@ -1,6 +1,6 @@
 %Created by Jacobs Somnic on 20260314
 %Latest revision: 
-%Purpose: Vaccine simulation for n=2
+%Purpose: Multistage simulation for n=2
 
 
 clc;
