@@ -1,20 +1,20 @@
 %Created by Jacobs Somnic on 20260314
 %Latest revision: 
-%Purpose: Vaccine simulation for n=2
+%Purpose: Multistage Simulation for n=3
 
 
 clc;
 clear all; 
 
-
+scale=10000
 %Parameter values
 alpha=28;
-beta=2; 
-lambda=3; 
+beta=2/scale; 
+lambda=3*scale; 
 mu=0.5;  
 delta1=1; 
 theta1=0.1;
-gamma1=5;
+gamma1=0.012;
 delta2=1.3;
 theta2=1.3;
 gamma2=1;
@@ -22,8 +22,8 @@ delta3=1.2;
 theta3=1.1; 
 
 parameters=[alpha beta lambda mu delta1 theta1 gamma1 delta2 theta2 gamma2 delta3 theta3];
-parameters_EE=[28 2 3 0.5 1 0.1 0.012 1.3 1.3 1 1.2 1.1];
-parameters_DFE=[28 0.5 1 0.5 1 0.1 0.012 1.3 1.3 1 1.2 1.1];
+parameters_EE=[28 2/scale 3*scale 0.5 1 0.1 0.012 1.3 1.3 1 1.2 1.1];
+parameters_DFE=[28 0.5/scale 1*scale 0.5 1 0.1 0.012 1.3 1.3 1 1.2 1.1];
 
 %Reproduction Number Calculation
 R_0=(beta*lambda)/(mu*(mu+delta1+gamma1+theta1))
@@ -35,7 +35,7 @@ constraints=check_cond_A(parameters);
 
 %Initial Condition
 S0=0.6;I10=0.2;I20=0;I30=0;R0=0;
-y0=[S0;I10;I20;I30;R0];
+y0=scale*[S0;I10;I20;I30;R0];
 
 
 %Normal Plot
@@ -204,12 +204,12 @@ legend(ax,h,'\gamma_1=0.01','\gamma_1=0.1','\gamma_1=1','\gamma_1=5','Location',
 
 %Initial Condition Study
 col_vec=['r' 'g' 'b' 'm' 'c' 'k'];
-S0_vec=[0.8 0.6 0.4 0.2];
-I01_vec=[0.2 0.4 0.6 0.8];
+S0_vec=scale*[0.8 0.6 0.4 0.2];
+I01_vec=scale*[0.2 0.4 0.6 0.8];
  
 figure('Name','Initial Condition Study'); clf
 %parameters=[alpha beta lambda mu delta1 theta1 gamma1 delta2 theta2 gamma2 delta3 theta3];
-parameters_EE=[28 2 3 0.5 1 0.1 0.012 1.3 1.3 1 1.2 1.2];
+parameters_EE=[28 2/scale 3*scale 0.5 1 0.1 0.012 1.3 1.3 1 1.2 1.1];
 for i=1:length(S0_vec)
 
     y0=[S0_vec(i);I01_vec(i);0;0;0];
@@ -284,8 +284,15 @@ ax.FontSize=24;
 
 ax=subplot(3,2,6);
 axis(ax,'off')
-legend(ax,h,'S_0=0.8; I1_0=0.2','S_0=0.6; I1_0=0.4','S_0=0.4; I1_0=0.6','S_0=0.6; I1_0=0.4','Location','southeast','NumColumns',2,'FontSize', 23)
-
+legend(ax,h, ...
+    {'$S(0)=800,\ I_1(0)=200$', ...
+     '$S(0)=600,\ I_1(0)=400$', ...
+     '$S(0)=400,\ I_1(0)=600$', ...
+     '$S(0)=200,\ I_1(0)=800$'}, ...
+     'Interpreter','latex', ...
+     'Location','southeast', ...
+     'NumColumns',1, ...
+     'FontSize',23)
 
 function dydt = sirs(t,y,parameters)
     alpha=parameters(1);
@@ -332,7 +339,7 @@ function condition_A=check_cond_A(parameters)
     delta3=parameters(11);
     theta3=parameters(12);
 
-    b1 = alpha*( ...
+    b1 = ( ...
     gamma1^2*(gamma2*(delta3 + 2*mu) + (delta2 + 2*mu)*(delta3 + theta3 + 2*mu)) ...
     + gamma1*( ...
         gamma2*(delta3*(theta1 + 2*mu) + delta1*(delta3 - theta2 + theta3 + 2*mu) + 2*mu*(theta1 + theta3 + 2*mu)) ...
@@ -348,7 +355,7 @@ function condition_A=check_cond_A(parameters)
         ) ...
         + 2*theta1*mu*(delta3 + theta3 + 2*mu)*(gamma2 + delta2 + theta2 + 2*mu) ...
     ) ...
-    );
+    )
     
     b2 = alpha*( ...
         alpha*delta1*theta1*(delta3*theta2 - delta2*theta3 + 2*(theta2 - theta3)*mu) ...
@@ -437,9 +444,9 @@ function condition_A=check_cond_A(parameters)
             + (delta2 + delta3 + theta2 + theta3)*(theta2*(gamma1 + theta1) + delta2*theta1) ...
             + 4*theta1*mu^2 ...
         ) ...
-    );
+    )
     
-    alpha_min=b1/(alpha*delta1*theta1*(gamma2+delta2+theta2+2*mu))
+    alpha_min=b1/(delta1*theta1*(gamma2+delta2+theta2+2*mu))
     
     %CONDITION A
 
